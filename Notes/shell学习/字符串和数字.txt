@@ -1,0 +1,63 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2014-11-22T22:48:51+08:00
+
+====== 字符串和数字 ======
+Created 星期六 22 十一月 2014
+
+参数展开
+	访问时使用$a，或者${a}
+	${1111}访问第1111个变量
+	
+空字符的展开
+	${parameter:-word}：若 parameter 没有设置（例如，不存在）或者为空，展开结果是 word 的值。若 parameter 不为空，则展开结果是 parameter 的值
+	${parameter:=word}：同上，同时parameter被赋值为word
+	${parameter:?word}:若 parameter 没有设置或为空，这种展开导致脚本带有错误退出，并且 word 的内容会发送到标准错误。若 parameter 不为空， 展开结果是 parameter 的值。
+	
+返回变量名的参数展开
+	${!prefix*}	
+	${!prefix@}：返回以prefix开头的已有变量名。
+	
+字符串的展开
+	${#parameter}：展开成由parameter所包含的字符串的长度。
+	${parameter:offset}
+	${parameter:offset:length}：这些展开用来从 parameter 所包含的字符串中提取一部分字符。提取的字符始于 第 offset 个字符（从字符串开头算起）直到字符串的末尾，除非指定提取的长度。若 offset 的值为负数，则认为 offset 值是从字符串的末尾开始算起。
+	${parameter#pattern}
+	${parameter##pattern}：截取字符串中匹配的部分。#匹配截取最短的部分，##匹配截取最长的部分
+	${parameter%pattern}
+	${parameter%%pattern}：和#类似，从末尾开始匹配
+	${parameter/pattern/string}：查找并替换。只有一项会被替换
+	${parameter//pattern/string}：所有的都被替换
+	${parameter/#pattern/string}：要求pattern出现在字符串的开头
+	${parameter/%pattern/string}：要求pattern出现在字符串的末尾
+
+大小写转换
+	${parameter,,}：把 parameter 的值全部展开成小写字母。
+	${parameter,}：仅仅把 parameter 的第一个字符展开成小写字母。
+	${parameter^^}：把 parameter 的值全部转换成大写字母。
+	${parameter^}：仅仅把 parameter 的第一个字符转换成大写字母（首字母大写）。
+	
+算术求值和展开
+	$((expression))：这里的 expression 是一个有效的算术表达式。
+	一元运算符与其他语言类似，这里记录一些不同以及容易忘得
+	**：幂运算
+	位运算符
+		~	按位取反。对一个数字所有位取反。
+		<<	位左移. 把一个数字的所有位向左移动。
+		>>	位右移. 把一个数字的所有位向右移动。
+		&	位与。对两个数字的所有位执行一个 AND 操作。
+		|	位或。对两个数字的所有位执行一个 OR 操作。
+		^	位异或。对两个数字的所有位执行一个异或操作。
+	同时也支持三元运算符
+	
+bc计算器：
+	在脚本中的使用示例
+	bc <<- EOF
+	    scale = 10
+	    i = $interest / 12
+	    p = $principal
+	    n = $months
+	    a = p * ((i * ((1 + i) ^ n)) / (((1 + i) ^ n) - 1))
+	    print a, "\n"
+	EOF
+	

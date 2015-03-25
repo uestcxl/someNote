@@ -1,0 +1,7 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2014-11-22T22:48:31+08:00
+
+====== shell学习 ======
+Created 星期六 22 十一月 2014
+

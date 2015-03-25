@@ -1,0 +1,20 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2015-03-13T13:17:02+08:00
+
+====== java笔记 ======
+Created 星期五 13 三月 2015
+
+重载和重写		http://fatkun.com/2010/07/java-overload-and-overrid.html
+
+string stringbuffer(安全) stringbuilder	http://www.cnblogs.com/fancydeepin/archive/2013/04/23/min-snail-speak_string-stringbuffer-stringbuilder.html
+
+spring依赖注入	
+
+spring和struts2的区别：mvc的入口，mvc的实现（基于方法，基于类的设计）
+
+hibernate延迟加载
+
+Java中equal和==的区别是什么	http://www.cnblogs.com/zhxhdean/archive/2011/03/25/1995431.html
+
+java调函数的说法

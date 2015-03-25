@@ -1,0 +1,39 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2014-11-22T23:45:38+08:00
+
+====== 数组 ======
+Created 星期六 22 十一月 2014
+
+创建一个数组
+	a[1]=test
+	declare -a a
+	days=(Sun Mon Tue Wed Thu Fri Sat)
+
+数组的访问
+	通过偏移量访问
+	
+数组操作
+	${array[*]}
+	${array[@]}：使用循环访问数组的每一个元素，当被引号引起来时，后者按偏移量输出
+	
+数组的元素个数
+	${#array[@]}
+	${#array[*]}
+	
+找到数组使用的下标
+	${!array[*]}
+	${!array[@]}
+	
+在数组末尾添加元素
+	通过使用 += 赋值运算符	array+=something
+
+数组排序
+	array_sorted=($(for i in "${array[@]}"; do echo $i; done | sort))
+	
+删除数组
+	unset array
+	注意：给一个数组赋空值不会清空数组内容。
+	
+关联数组
+

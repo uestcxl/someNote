@@ -1,0 +1,41 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2015-01-16T19:52:04+08:00
+
+====== nodejs-express ======
+Created 星期五 16 一月 2015
+
+morgan:
+	HPPT request logger middleware for node.js
+	doc: https://github.com/expressjs/morgan
+	
+serve-favicon
+	A middleware for node.js to cache/other things the favicon
+	https://github.com/expressjs/serve-favicon
+	
+compression
+	A compression middleware for node.js 
+	https://github.com/expressjs/compression
+	
+body-parse
+	A middleware to parse the request , require and other things
+	https://github.com/expressjs/body-parser
+	
+cookie-parser
+	A cookie middleware to parse the cookie header and send the cookie information to client
+	https://github.com/expressjs/cookie-parser
+	
+error-handler
+	only used in dev enviroment to trace the error files and state
+	https://github.com/expressjs/errorhandler
+	
+path
+	a node.js obj . easy to operate the sys path
+	http://haiyupeter.iteye.com/blog/1733260
+	
+express-session
+	a session middleware
+	
+connect-mongo
+	MongoDB session store for Connect and Express
+	https://github.com/kcbanner/connect-mongo

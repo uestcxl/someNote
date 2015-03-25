@@ -1,0 +1,64 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2014-11-23T00:49:38+08:00
+
+====== if分支 ======
+Created 星期日 23 十一月 2014
+
+结构：
+	if [ expression ]
+	
+	文件表达式：
+		表达式		如果为真
+		file1 -ef file2	file1 和 file2 拥有相同的索引号（通过硬链接两个文件名指向相同的文件）。
+		file1 -nt file2	file1新于 file2。
+		file1 -ot file2	file1早于 file2。
+		-b file		file 存在并且是一个块（设备）文件。
+		-c file		file 存在并且是一个字符（设备）文件。
+		-d file		file 存在并且是一个目录。	
+		-e file		file 存在。
+		-f file		file 存在并且是一个普通文件。
+		-g file		file 存在并且设置了组 ID。
+		-G file		file 存在并且由有效组 ID 拥有。
+		-k file		file 存在并且设置了它的“sticky bit”。
+		-L file		file 存在并且是一个符号链接。
+		-O file		file 存在并且由有效用户 ID 拥有。	
+		-p file		file 存在并且是一个命名管道。
+		-r file		file 存在并且可读（有效用户有可读权限）。
+		-s file		file 存在且其长度大于零。
+		-S file		file 存在且是一个网络 socket。
+		-t fd			fd 是一个定向到终端／从终端定向的文件描述符 。 这可以被用来决定是否重定向了标准输入／输出错误。
+		-u file		file 存在并且设置了 setuid 位。
+		-w file		file 存在并且可写（有效用户拥有可写权限）。
+		-x file		file 存在并且可执行（有效用户有执行／搜索权限）。
+		
+	字符串表达式：
+		string			string 不为 null。
+		-n string			字符串 string 的长度大于零。
+		-z string			字符串 string 的长度为零。
+		string1 = string2
+		string1 == string2	string1 和 string2 相同. 单或双等号都可以，不过双等号更受欢迎。
+		string1 != string2	string1 和 string2 不相同。
+		string1 > string2	sting1 排列在 string2 之后。
+		string1 < string2	string1 排列在 string2 之前。
+	
+	整型表达式
+		表达式			如果为真...
+		integer1 -eq integer2	integer1 等于 integer2.
+		integer1 -ne integer2	integer1 不等于 integer2.
+		integer1 -le integer2	integer1 小于或等于 integer2.
+		integer1 -lt integer2	integer1 小于 integer2.
+		integer1 -ge integer2	integer1 大于或等于 integer2.
+		integer1 -gt integer2	integer1 大于 integer2.
+	
+	正则：
+		string1 =~ regex
+		
+	(( )) - 为整数设计
+
+	结合表达式
+		操作符	测试		[[ ]] and (( ))
+		AND		-a			&&
+		OR		-o			||
+		NOT		!			!
+

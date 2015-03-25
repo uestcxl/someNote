@@ -1,0 +1,162 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2014-11-23T12:06:55+08:00
+
+====== php学习 ======
+Created 星期日 23 十一月 2014
+
+require,require_once;include,include_once
+	require报错，include警告；include在执行到的时候才会加载，reqiure会预处理；
+
+declare
+	使用register_tick_function来指定事件
+		(1) tick是一个事件。
+		(2) tick事件在PHP每执行N条低级语句就发生一次，N由declare语句指定。
+		(3)可以用register_tick_function()来指定tick事件发生时应该执行的操作。
+	declare(ticks=1){...}
+	它会在每条statement，函数声明，类（实际上还包括接口）声明后插入一条TICKS指令。
+	根据上面的定义，我们知道，statement包括：
+	(1) 简单语句：空语句（就一个；号），return,break,continue,throw, goto,global,static,unset,echo, 内置的HTML文本，分号结束的表达式等均算一个语句。
+	(2) 复合语句：完整的if/elseif,while,do...while,for,foreach,switch,try...catch等算一个语句。
+	(3) 语句块：{} 括出来的语句块。
+	(4) 最后特别的：declare块本身也算一个语句(按道理declare块也算是复合语句，但此处特意将其独立出来)。
+	所有的statement, function_declare_statement, class_declare_statement就构成了所谓的低级语句(low-level statement)。
+	<?php
+	function doTicks ()
+	{
+	    echo 'Ticks';
+	}
+	register_tick_function('doTicks');
+	declare(ticks = 1) {
+	    for ($x = 1; $x < 10; ++ $x) {
+	        echo $x * $x . '<br />';
+	    }
+	}
+	?>
+	输出：
+	1
+	TicksTicks4
+	TicksTicks9
+	TicksTicks16
+	TicksTicks25
+	TicksTicks36
+	TicksTicks49
+	TicksTicks64
+	TicksTicks81
+	TicksTicksTicksTicks
+
+可变变量
+	已一个普通变量的值作为变量名
+	访问数组时：$$a[1] ，解析器需要知道是想要 $a[1] 作为一个变量呢，还是想要 $$a 作为一个变量并取出该变量中索引为 [1] 的值。解决此问题的语法是，对第一种情况用 ${$a[1]}，对第二种情况用 ${$a}[1]。
+	类的属性也可以通过可变属性名来访问。
+	$baz = array('foo', 'bar', 'baz', 'quux');
+	echo $foo->$bar . "\n";
+	echo $foo->$baz[1] . "\n";
+	$start = 'b';
+	$end   = 'ar';
+	echo $foo->{$start . $end} . "\n";
+
+PHP中的预定义变量包含：
+	超全局变量      ——    超全局变量是在全部作用域中始终可用的内置变量
+	$GLOBALS      ——    引用全局作用域中可用的全部变量
+	$_SERVER        ——    服务器和执行环境信息
+	$_GET             ——    HTTP GET 变量
+	$_POST           ——    HTTP POST 变量
+	$_FILES           ——    HTTP 文件上传变量
+	$_REQUEST     ——    HTTP Request 变量
+	$_SESSION           ——    Session 变量
+	$_ENV             ——    环境变量
+	$_COOKIE       ——    HTTP Cookies
+	$php_errormsg     ——    前一个错误信息
+	$_HTTP_RAW_POST_DATA      ——    原生POST数据
+	$http_response_header    ——    HTTP响应头
+	$argc —— 传递给脚本的参数数目
+	$argv   ——    传递给脚本的参数数组
+	 
+	      超级全局变量包含：$GLOBALS, $_SERVER,$_GET, $_POST, $_FILES, $_COOKIE, $_SESSION, $_REQUEST, $ENV。默认情况下，所有的超全局变量都是可用的，但是有一些指令或配置能影响这种可用性。
+	 
+	一、$GLOBALS
+	      $GLOBALS是一个包含全部变量的全局组合数组，变量名字就是数组的键。超级全局变量也成为自动化的全局变量，这表示其在脚本的所有作用域都是可用的。不需要在函数或方法中用global $var;来访问它。与所有其它超级全局变量不同，$GLOBALS在php中总是可用的。
+	 
+	二、$_SERVER
+	      服务器和执行环境信息，$_SERVER是一个包含诸如头信息（header）、路径（path）、以及脚本位置（script locations）等等信息的数组。这个数组的项目有Web服务器创建。不能保证每个服务器都提供全部项目；服务器可能会忽略一些，更为详细的请参考 CGI1.1规范中说明，注意$HTTP_SERVER_VARS包含着相同的信息，但它不是一个超全局变量，这个变量已弃用，$HTTP_SERVER_VARS和$_SERVER是不同的变量，PHP处理他们的方式不同。
+	 
+	三、$_GET
+	      通过 URL 参数传递给当前脚本的变量的数组。 $HTTP_GET_VARS 包含相同的信息， 但它不是一个超全局变量，这个变量已弃用。 注意$HTTP_GET_VARS 和$_GET 是不同的变量，PHP 处理它们的方式不同)
+	 
+	四、$_POST
+	      通过 HTTP POST 方法传递给当前脚本的变量的数组。 $HTTP_POST_VARS 包含相同的信息，但它不是一个超全局变量，这个变量已弃用。 注意$HTTP_POST_VARS 和$_POST 是不同的变量，PHP 处理它们的方式不同。
+	 
+	五、$_FILES
+	      通过 HTTP POST 方式上传到当前脚本的项目的数组。 $HTTP_POST_FILES 包含相同的信息，但它不是一个超全局变量，这个变量已弃用。注意$HTTP_POST_FILES 和$_FILES 是不同的变量，PHP 处理它们的方式不同
+	 
+	六、$_REQUEST
+	           默认情况下包含了$_GET，$_POST 和 $_COOKIE 的数组。注意PHP5.3.0中引入request_order,该指令会影响$_REQUEST的内容。
+	 
+	七、$_SESSION
+	      当前脚本可用 SESSION 变量的数组。更多关于如何使用的信息，参见 Session 函数文档。 $HTTP_SESSION_VARS 包含相同的信息，但它不是一个超全局变量，这个变量已弃用。注意$HTTP_SESSION_VARS 和$_SESSION 是不同的变量，PHP 处理它们的方式不同
+	 
+	八、$_ENV
+	      通过环境方式传递给当前脚本的变量的数组。 这些变量被从 PHP 解析器的运行环境导入到 PHP 的全局命名空间。很多是由支持 PHP 运行的 Shell 提供的，并且不同的系统很可能运行着不同种类的 Shell，所以不可能有一份确定的列表。请查看你的 Shell 文档来获取定义的环境变量列表。 其他环境变量包含了 CGI 变量，而不管 PHP 是以服务器模块还是 CGI 处理器的方式运行。$HTTP_ENV_VARS 包含相同的信息，但它不是一个超全局变量，这个变量已弃用。 (注意 $HTTP_ENV_VARS 和 $_ENV 是不同的变量，PHP 处理它们的方式不同)
+	 
+	九、$_COOKIE
+	      通过 HTTP Cookies 方式传递给当前脚本的变量的数组。 $HTTP_COOKIE_VARS 包含相同的信息，但它不是一个超全局变量，这个变量已弃用。 注意$HTTP_COOKIE_VARS 和$_COOKIE 是不同的变量，PHP 处理它们的方式不同
+	 
+	十、$php_errormsg（前一个错误信息）
+	      $php_errormsg 变量包含由 PHP 生成的最新错误信息。这个变量只在错误发生的作用域内可用，并且要求track_errors 配置项是开启的（默认是关闭的）。如果用户定义了错误处理句柄（set_error_handler()）并且返回FALSE 的时候，$php_errormsg 就会被设置。
+	 
+	十一、$HTTP_RAW_POST_DATA（原生POST数据）
+	      $HTTP_RAW_POST_DATA 包含 POST 提交的原始数据。总是产生$HTTP_RAW_POST_DATA 变量包含有原始的 POST 数据。否则，此变量仅在碰到未识别 MIME 类型的数据时产生。不过，访问原始 POST 数据的更好方法是 php://input%E3%80%82$HTTP_RAW_POST_DATA 对于enctype="multipart/form-data" 表单数据不可用。
+	 
+	十二、$http_response_header（HTTP响应头）
+	      $http_response_header 数组与 get_headers() 函数类似。当使用HTTP 包装器时，$http_response_header 将会被 HTTP 响应头信息填充。$http_response_header 将被创建于局部作用域中。
+	 
+	十三、$argc
+	      $argc — 传递给脚本的参数数目，包含当运行于命令行下时传递给当前脚本的参数的数目。脚本的文件名总是作为参数传递给当前脚本，因此 $argc 的最小值为1。这个变量仅在 register_argc_argv 打开时可用。
+	 
+	十四、$argv（传递给脚本的参数数组）
+	            包含当运行于命令行下时传递给当前脚本的参数的数组。第一个参数总是当前脚本的文件名，因此 $argv[0] 就是脚本文件名。这个变量仅在 register_argc_argv 打开时可用。
+
+函数的参数：
+	func_num_args()：获取参数的个数
+	func_get_args()：获取参数数组
+	func_get_arg(n)：获取某个参数
+	
+可变函数：
+	<?php
+	function foo() {
+	    echo "In foo()<br />\n";
+	}
+	
+	function bar($arg = '') {
+	    echo "In bar(); argument was '$arg'.<br />\n";
+	}
+	
+	// 使用 echo 的包装函数
+	function echoit($string)
+	{
+	    echo $string;
+	}
+	
+	$func = 'foo';
+	$func();        // This calls foo()
+	
+	$func = 'bar';
+	$func('test');  // This calls bar()
+	
+	$func = 'echoit';
+	$func('test');  // This calls echoit()
+	?>
+	也可以用来调用对象的方法。
+	当调用静态方法时，函数调用要比静态属性优先：
+	
+加密类：
+	PHP 5.5以上：
+		password_hash(string $password , interger $algo [, array $$options])
+			$algo:指定加密的算法。PASSWORD_DEFAULT：使用默认的加密算法，返回的字符串长度依加密算法而定，在设计数据库时应注意。PASSWORD_BCRYPT：一种加密算法，返回60位的字符串。$options：'salt':可自定义的混淆密码的字符串；'cost'：默认的加密递归次数
+		password_verify($password,$hash)
+			验证$password值的$hash值
+		password_needs_rehash()
+			根据新条件确定是否重构密码的hash值
+			
+

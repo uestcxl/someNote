@@ -1,0 +1,57 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2014-12-03T12:24:49+08:00
+
+====== CSS药店 ======
+Created 星期三 03 十二月 2014
+
+box-sizing
+		在计算合模型的宽度时，忽略内宽和边框
+		[[-webkit-box-sizing:border-box]];
+		[[-moz-box-sizing:border-box]];
+		[[box-sizing:border-box]];
+
+
+position定位
+		static	默认使用，和没有的时候一样
+		fix		相对于整个页面(body)的写死的定位
+		relative	相对于该结点在原先位置的定位
+		absolute	相对与最近非static的父结点
+
+float定位
+		使结点脱离文本流，浮动
+		清除浮动：
+				[[clear:left]];		清除该结点左边或者右边的浮动(both)
+				[[overflow:auto]];	
+				
+百分比
+		通过设置结点宽度，高度的百分比来布局
+		缺点，当页面缩小时，结点容易被挤扁，记得设置最小宽度或高度来确保
+
+媒体查询
+		通过检测当前页面状态作出动态的布局改变
+		@media screen and(min-width:600px){	//页面最小宽度大于等于600px
+			xxxxx
+		}
+		@media screen and(max-width:599){		//页面最大宽度小于等于599
+			yyyyy
+		}
+		具体参考 https://developer.mozilla.org/zh-CN/docs/Web/Guide/CSS/Media_queries
+
+inline-block
+		结合百分比布局页面
+
+column
+		便于布置列
+		.three{
+			-moz-column-count:3;
+			[[-moz-column-gap:1em]];
+			cloumn-count:3;
+			[[colunn-gap:1em]];
+		}
+
+flexbox
+		即将使用的新布局方式，简单
+
+
+

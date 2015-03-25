@@ -1,0 +1,26 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2014-11-23T00:03:33+08:00
+
+====== 其他 ======
+Created 星期日 23 十一月 2014
+
+组命令和子 shell
+
+使用进程替换解决read的读入问题
+	read < <(echo "foo")
+	
+异步执行
+	wait 命令导致一个父脚本暂停运行，直到一个 特定的进程（例如，子脚本）运行结束。
+	使用$!记录子进程的pid，wait $pid	知道子进程退出，再继续执行父进程的脚本
+
+命令管道
+	在两个进程之间建立联系，可以像其他类型的文件一样使用。一个特殊的文件
+
+	创建一个命令管道
+		mkfifo pipe
+	
+	使用命令管道
+		在一个终端 ls -l > pipe
+		另一个终端 cat <pipe
+

@@ -1,0 +1,51 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2014-10-21T23:33:01+08:00
+
+====== 应用安装 ======
+Created 星期二 21 十月 2014
+
+安装wineqq：
+	do apt-get install libgtk2.0-0:i386
+	sudo add-apt-repository ppa:ubuntu-wine/ppa
+	sudo apt-get update
+	sudo apt-get install wine1.6
+	sudo apt-get install winetricks
+	wget http://www.longene.org/download/WineQQ2013SP6-20140102-Longene.deb
+	sudo dpkg -i WineQQ2013SP6-20140102-Longene.deb
+
+
+
+嫂子 哥哥
+弟媳 弟弟
+姐姐 姐夫
+妹妹 妹夫
+儿子 媳妇
+女儿 女婿
+伯父 伯母
+姑妈 姑丈
+舅舅 舅妈
+姨妈 姨丈
+祖父 祖母
+外祖父 外祖母
+母亲 父亲
+
+叔父 伯父
+
+孙子 孙女
+外孙 外孙女
+
+侄子 侄女
+外甥 外甥女
+
+堂哥 堂姐
+堂弟 堂妹
+
+表哥 表妹
+表弟 表姐
+
+
+
+
+
+

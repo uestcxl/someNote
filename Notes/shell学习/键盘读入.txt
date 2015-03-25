@@ -1,0 +1,22 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2014-11-23T00:47:12+08:00
+
+====== 键盘读入 ======
+Created 星期日 23 十一月 2014
+
+read - 从标准输入读取数值
+	read [-options] [variable...]
+	选项			说明
+	-a array		把输入赋值到数组 array 中，从索引号零开始。我们 将在第36章中讨论数组问题。
+	-d delimiter	用字符串 delimiter 中的第一个字符指示输入结束，而不是一个换行符。
+	-e			使用 Readline 来处理输入。这使得与命令行相同的方式编辑输入。
+	-n num		读取 num 个输入字符，而不是整行。
+	-p prompt		为输入显示提示信息，使用字符串 prompt。
+	-r			Raw mode. 不把反斜杠字符解释为转义字符。
+	-s			Silent mode. 不会在屏幕上显示输入的字符。当输入密码和其它确认信息的时候，这会很有帮助。
+	-t seconds		超时. 几秒钟后终止输入。read 会返回一个非零退出状态，若输入超时。
+	-u fd		使用文件描述符 fd 中的输入，而不是标准输入。
+
+IFS
+	IFS 的默认值包含一个空格，一个 tab，和一个换行符，每一个都会把 字段分割开。
